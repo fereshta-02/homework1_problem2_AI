@@ -4,11 +4,11 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        // Hər iki test faylını array-də təyin et
+
         String[] inputFiles = {"csp_small.txt", "csp_tight.txt"};
 
         for (String filename : inputFiles) {
-            System.out.println("🔍 Processing: " + filename);
+            System.out.println(" Processing: " + filename);
             System.out.println("=".repeat(50));
 
             CSP csp = parseInput(filename);
@@ -18,9 +18,9 @@ public class Main {
             long endTime = System.currentTimeMillis();
 
             if (solution == null) {
-                System.out.println("❌ failure");
+                System.out.println(" failure");
             } else {
-                System.out.print("✅ SOLUTION: {");
+                System.out.print(" SOLUTION: {");
                 List<Variable> sortedVars = csp.variables.stream()
                         .sorted(Comparator.comparing(v -> Integer.parseInt(v.name)))
                         .collect(Collectors.toList());
@@ -32,7 +32,7 @@ public class Main {
                 System.out.println("}");
             }
 
-            System.out.printf("⏱️  Runtime: %d ms\n", endTime - startTime);
+            System.out.printf(" Runtime: %d ms\n", endTime - startTime);
             System.out.println("=".repeat(50));
             System.out.println();
         }
@@ -56,9 +56,9 @@ public class Main {
                 String u = parts[0].trim();
                 String v = parts[1].trim();
 
-                // Self-loop check
+
                 if (u.equals(v)) {
-                    System.out.println("⚠️  Self-loop detected: " + u + " -> " + v);
+                    System.out.println(" Self-loop detected: " + u + " -> " + v);
                 }
 
                 nodes.add(u);
@@ -78,7 +78,7 @@ public class Main {
             csp.addConstraint(edge[0], edge[1]);
         }
 
-        System.out.println("📊 Graph Info:");
+        System.out.println("Graph Info:");
         System.out.println("   - Colors: " + colors);
         System.out.println("   - Nodes: " + nodes.size() + " " + nodes);
         System.out.println("   - Edges: " + edges.size());
